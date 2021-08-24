@@ -18,7 +18,7 @@ extern char **environ;
 /**
  * struct list_s - struct type linked list
  * @dir: directory path
- * @nex: pointer to another struct
+ * @next: pointer to another struct
  */
 typedef struct list_s
 {
@@ -36,4 +36,8 @@ char *_getenv(const char *name);
 int _strncmp(const char *str1, const char *str2, size_t bytes);
 char *_strdup(char *str);
 char *_strcpy(char *str, const char *src);
+
+/*LINKED LIST*/
+list_t *get_path_dirs(char *aux, char **path);
+list_t *init_path(char **path);
 #endif /*_LIBRARY_H_*/
