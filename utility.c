@@ -24,3 +24,42 @@ int _strncmp(const char *str1, const char *str2, size_t bytes)
 	else
 		return (-1);
 }
+
+/**
+ * _strdup - duplicate a string
+ * @str: string to duplicate
+ *
+ * Return: pointer to a string duplicate
+ */
+char *_strdup(char *str)
+{
+	size_t size;
+	char *dup;
+
+	if (!(str))
+		return (NULL);
+	while (*(str + size) != '\0')
+		size++;
+	dup = (char *) malloc(size + 1);
+	if (!(dup))
+		return (NULL);
+	_strcpy(dup, str);
+	return (dup);
+}
+/**
+ * _strcpy - Copies the string pointed to by src, including the
+ *           terminating null byte, to the buffer pointed by des.
+ * @str: Pointer to the destination of copied string.
+ * @src: Pointer to the src of the source string.
+ *
+ * Return: Pointer to str.
+ */
+char *_strcpy(char *str, const char *src)
+{
+	size_t i;
+
+	for (i = 0 ; *(src + i) != '\0' ; i++)
+		*(str + i) = *(src + i);
+	*(str + i) = '\0';
+	return (str);
+}
