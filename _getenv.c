@@ -22,7 +22,7 @@ char *_getenv(const char *name)
 
 	for (x = 0; environ[x] != NULL; x++)
 	{
-		aux = strncmp(environ[x], name, j);
+		aux = _strncmp(environ[x], name, j);
 		if (aux == 0)
 			break;
 	}

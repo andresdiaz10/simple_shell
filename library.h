@@ -22,4 +22,7 @@ void new_Prompt(int __attribute__((unused)) sign);
 
 /* ENVIRON */
 char *_getenv(const char *name);
+
+/* UTILITY */
+int _strncmp(const char *str1, const char *str2, size_t bytes);
 #endif /*_LIBRARY_H_*/
