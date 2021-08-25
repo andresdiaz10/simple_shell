@@ -56,3 +56,45 @@ list_t *get_path_dirs(char *aux, char **path)
 	}
 	return (head);
 }
+
+/**
+ * create_path - create the path to run the command
+ * @commands: command to run
+ * @path: path to create
+ *
+ * Return: pointer to the path for use the command
+ */
+char *create_path(char ***commands, list_t *path)
+{
+	char *aux_commands;
+	char *cp_path = NULL;
+	list_t *direct;
+	size_t size_commands;
+	size_t size_path;
+	struct stat aux;
+
+	direct = path;
+	if (!(commands))
+		return (NULL);
+	if (!(direct))
+		return (NULL);
+	aux_commands = *(commands)[0];
+	size_commands = _strlen(aux_commands);
+	while (direct)
+	{
+		size_path = _strlen(direct->dir);
+		cp_path = (char *) malloc(size_path + size_commands + 2);
+		if (!(cp_path))
+			return (NULL);
+		*cp_path = '\0';
+		_strcat(cp_path, direct->dir);
+		_strcat(cp_path, "/");
+		_strcat(cp_path, aux_commands);
+		if (stat(cp_path, &aux) == 0) /*INVALID PATH OR FILENAME */
+			break;
+		free(cp_path);
+		cp_path = NULL; /* NO DANGLING POINTER :D */
+		direct = direct->next;
+	}
+	return (cp_path);
+}
