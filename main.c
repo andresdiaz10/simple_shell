@@ -17,17 +17,15 @@ int execute(char **av)
 	int exit_status;
 	int flag = 1;
 	int history = 1;
-	int prueba = 0;
-
 
 	path = init_path(&cp_path);
 	if (!(isatty(STDIN_FILENO)))
 		flag = 0;
-	while (prueba != 5)
+	while (1)
 	{
 		exit_status = 0;
 		if (flag)
-			write(STDOUT_FILENO, prompt, 4);
+			write(STDOUT_FILENO, prompt, 5);
 		fflush(stdout);
 		bytes_c = get_commands(&buffer, &commands);
 		if (bytes_c == -1)
@@ -37,7 +35,6 @@ int execute(char **av)
 		check_directories(&commands, &total_path, av, &history, &exit_status);
 		run(&buffer, &commands, total_path, &exit_status);
 		history++;
-		prueba++;
 	}
 	free(buffer);
 	free(cp_path);
@@ -106,7 +103,7 @@ int main(int  ac, char **av)
 	int last_value;
 
 	(void)ac;	
-	/*signal(SIGINT, new_Prompt);*/
+	signal(SIGINT, new_Prompt);
 	last_value = execute(av);
 	return (last_value);
 }

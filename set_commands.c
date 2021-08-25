@@ -74,7 +74,7 @@ ssize_t get_commands(char **buffer, char ***commands)
 	size_t buff_size = 0;
 
 	*commands = NULL;
-	bytes = getline(buffer, &buff_size, STDIN_FILENO);
+	bytes = getline(buffer, &buff_size, stdin);
 	if (bytes > 0)
 	{
 		index = 0;
