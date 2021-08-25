@@ -98,3 +98,48 @@ char *create_path(char ***commands, list_t *path)
 	}
 	return (cp_path);
 }
+
+/**
+ * check_path - Check if the path exist and permissions to use
+ * @commands: array of the string (commands)
+ * @total_path: Path to check
+ * @av: name of the shell .exe
+ * @history: count of the last commands
+ * @exit_status: save the status of error
+ */
+void check_path(char ***commands, char **total_path,
+		char **av, int *history, int *exit_status)
+{
+	char *error_msg = NULL;
+	char *aux_commands = NULL;
+	char *buffer;
+	char *buffer1;
+	int acc;
+	int acc1;
+
+	if ((*total_path) || !(*commands))
+		return;
+	aux_commands = *(commands)[0];
+	acc = access(aux_commands, F_OK | X_OK); /*F_OK - file exist,X_OK permission*/
+	if (acc == 0)
+		*total_path = _strdup(aux_commands);
+	else
+	{
+		acc = access(aux_commands, X_OK);
+		acc1 = access(aux_commands, F_OK);
+		if (acc != 0)
+		{
+			error_msg = "Permission denied\n";
+			*exit_status = 126;
+			buffer = _itoa(*history);
+			create_error(av[0], aux_commands, error_msg, buffer);
+		}
+		else if (acc1 != 0)
+		{
+			error_msg = "File not found\n";
+			*exit_status = 127;
+			buffer1 = _itoa(*history);
+			create_error(av[0], aux_commands, error_msg, buffer1);
+		}
+	}
+}

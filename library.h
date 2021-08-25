@@ -40,12 +40,17 @@ void _print1(int fildes, char *str);
 int _strcmp(char *s1, char *s2);
 int _strlen(const char *s);
 char *_strcat(char *dest, const char *src);
+int num_len(int num);
+char *_itoa(int num);
 /*LINKED LIST*/
 list_t *get_path_dirs(char *aux, char **path);
 list_t *init_path(char **path);
 char *create_path(char ***commands, list_t *path);
-
-
+void check_path(char ***commands, char **full_path,
+		char **av, int *history, int *exit_status);
+/*CREATE ERROR */
+void create_error(char *av, char *aux_commands,
+		  char *error_msg, char *history);
 /* SET COMMAND */
 ssize_t get_commands(char **buffer, char ***commands);
 void put_nullc(char **buffer);

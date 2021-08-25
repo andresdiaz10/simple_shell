@@ -18,9 +18,7 @@ int execute(char **av)
 	int flag = 1;
 	int history = 1;
 
-	(void)av;
-	(void)history;
-	(void)path;
+
 	path = init_path(&cp_path);
 	if (!(isatty(STDIN_FILENO)))
 		flag = 0;
@@ -34,6 +32,7 @@ int execute(char **av)
 		if (bytes_c == -1)
 			break; /* BUILT_IN EXIT */
 		total_path = create_path(&commands, path);
+		check_path(&commands, &total_path, av, &history, &exit_status);
 	}
 	return (exit_status);
 }
