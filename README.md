@@ -27,7 +27,7 @@ The Simple Shell is a simple UNIX command interpreter written entirely in C. The
 
 Name File | Description
 ------------- | -------------
-README.md | Content from cell 2
+README.md | Information of the Simple Shell
 Library.h | Simple_shell's prototypes
 Main.c    | Shell main function
 linked_list.c | Call the functions for  copy the all directories of the path
