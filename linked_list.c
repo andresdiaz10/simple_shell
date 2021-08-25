@@ -106,6 +106,8 @@ char *create_path(char ***commands, list_t *path)
  * @av: name of the shell .exe
  * @history: count of the last commands
  * @exit_status: save the status of error
+ *
+ * Return: none
  */
 void check_path(char ***commands, char **total_path,
 		char **av, int *history, int *exit_status)
@@ -136,10 +138,52 @@ void check_path(char ***commands, char **total_path,
 		}
 		else if (acc1 != 0)
 		{
-			error_msg = "File not found\n";
+			error_msg = "path not found\n";
 			*exit_status = 127;
 			buffer1 = _itoa(*history);
 			create_error(av[0], aux_commands, error_msg, buffer1);
+		}
+	}
+}
+
+/**
+ * check_directories - Check if the directorie exist
+ *	and file permissions to use
+ * @commands: array of the string (commands)
+ * @total_path: Path to check
+ * @av: name of the shell .exe
+ * @history: count of the last commands
+ * @exit_status: save the status of error
+ *
+ * Return: none
+ */
+
+void check_directories(char ***commands, char **total_path,
+		char **av, int *history, int *exit_status)
+{
+	char *error_msg = NULL;
+	char *aux_commands = NULL;
+	char *buffer;
+	int c;
+	struct stat aux;
+
+	if (!(commands))
+		return;
+	aux_commands = *(commands)[0];
+	c = stat(aux_commands, &aux); /*point to the pathname */
+	if (c == 0)
+	{
+		if ((aux.st_mode & S_IFMT) == S_IFDIR)
+		{
+			*exit_status = 126;
+			buffer = _itoa(*history);
+			error_msg = "Permission denied\n";
+			create_error(av[0], aux_commands, error_msg, buffer);
+			if (*total_path)
+			{
+				free(*total_path);
+				*total_path = NULL; /*NO DANGLING POINTER*/
+			}
 		}
 	}
 }

@@ -33,6 +33,7 @@ int execute(char **av)
 			break; /* BUILT_IN EXIT */
 		total_path = create_path(&commands, path);
 		check_path(&commands, &total_path, av, &history, &exit_status);
+		check_directories(&commands, &total_path, av, &history, &exit_status);
 	}
 	return (exit_status);
 }

@@ -46,8 +46,11 @@ char *_itoa(int num);
 list_t *get_path_dirs(char *aux, char **path);
 list_t *init_path(char **path);
 char *create_path(char ***commands, list_t *path);
-void check_path(char ***commands, char **full_path,
+void check_path(char ***commands, char **total_path,
 		char **av, int *history, int *exit_status);
+void check_directories(char ***commands, char **total_path,
+		char **av, int *history, int *exit_status);
+
 /*CREATE ERROR */
 void create_error(char *av, char *aux_commands,
 		  char *error_msg, char *history);
