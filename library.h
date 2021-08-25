@@ -1,6 +1,7 @@
 #ifndef _LIBRARY_H_
 #define _LIBRARY_H_
 
+#include <errno.h>
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -28,6 +29,8 @@ typedef struct list_s
 /* MAIN.C */
 int execute(char **av);
 void new_Prompt(int __attribute__((unused)) sign);
+int run(char **buffer, char ***commands, char *total_path, int *exit_status);
+
 
 /* ENVIRON */
 char *_getenv(const char *name);
