@@ -90,6 +90,8 @@ ssize_t get_commands(char **buffer, char ***commands)
 		put_nullc(buffer);
 		aux = commands_lenght(bytes, buffer);
 		separate_commands(commands, buffer, aux);
+		built_env(commands, aux);
+		built_exit(commands, aux, &bytes);
 	}
 	return (bytes);
 }
