@@ -40,4 +40,11 @@ char *_strcpy(char *str, const char *src);
 /*LINKED LIST*/
 list_t *get_path_dirs(char *aux, char **path);
 list_t *init_path(char **path);
+
+/* SET COMMAND */
+ssize_t get_commands(char **buffer, char ***commands);
+void put_nullc(char **buffer);
+int commands_lenght(ssize_t bytes, char **buffer);
+void separate_commands(char ***commands, char **buffer, int bytes);
+
 #endif /*_LIBRARY_H_*/
