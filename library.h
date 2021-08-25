@@ -38,10 +38,13 @@ char *_strdup(char *str);
 char *_strcpy(char *str, const char *src);
 void _print1(int fildes, char *str);
 int _strcmp(char *s1, char *s2);
-
+int _strlen(const char *s);
+char *_strcat(char *dest, const char *src);
 /*LINKED LIST*/
 list_t *get_path_dirs(char *aux, char **path);
 list_t *init_path(char **path);
+char *create_path(char ***commands, list_t *path);
+
 
 /* SET COMMAND */
 ssize_t get_commands(char **buffer, char ***commands);

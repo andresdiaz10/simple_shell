@@ -1,4 +1,27 @@
 #include "library.h"
+
+/**
+ * _strcmp - Compares two strings.
+ * @s1: The first string to be compared.
+ * @s2: The second string to be compared.
+ *
+ * Return: Positive byte difference if s1 > s2
+ *         0 if s1 = s2
+ *         Negative byte difference if s1 < s2
+ */
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+
+	if (*s1 != *s2)
+		return (*s1 - *s2);
+
+	return (0);
+}
 /**
  * _strncmp - compare two strings
  * @str1: pointer to a string
@@ -62,4 +85,20 @@ char *_strcpy(char *str, const char *src)
 		*(str + i) = *(src + i);
 	*(str + i) = '\0';
 	return (str);
+}
+
+/**
+ * _print1 - print a string in the STDOUT
+ * @fildes: file descriptor
+ * @str: string to print
+ *
+ * Return: none
+ */
+void _print1(int fildes, char *str)
+{
+	size_t size = 0;
+
+	while (*(str + size))
+		size++;
+	write(fildes, str, size);
 }
