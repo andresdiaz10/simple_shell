@@ -102,7 +102,7 @@ int main(int  ac, char **av)
 {
 	int last_value;
 
-	(void)ac;	
+	(void)ac;
 	signal(SIGINT, new_Prompt);
 	last_value = execute(av);
 	return (last_value);
