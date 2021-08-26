@@ -12,7 +12,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#define TRUE 1
 
 extern char **environ;
 
