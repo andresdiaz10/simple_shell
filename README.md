@@ -51,6 +51,12 @@ _strdup    | Duplicate a string
 
 ## Usage 
 
+# MODE NO INTERACTIVE
+> echo "/bin/ls" | ./hsh
+
+>  2_utility.c   AUTHORS   create_error.c   hsh         linked_list.c   man_1_simple_shell   set_commands.c  'Untitled Diagram (2).png'   utility.c
+
+# MODE INTERACTIVE
 >./hsh
 
 >$
@@ -77,9 +83,9 @@ _strdup    | Duplicate a string
 
 ## AUTHORS
 
-Laura Sofia Caicedo <3383@holbertonschool.com>
-Andres Zapata <3340@holbertonschool.com>
-Maha Laksmy Garcia <3354@holbertonschool.com>
+* Laura Sofia Caicedo <3383@holbertonschool.com>
+* Andres Zapata <3340@holbertonschool.com>
+* Maha Laksmy Garcia <3354@holbertonschool.com>
 
 ## MAN SIMPLE SHELL
 
