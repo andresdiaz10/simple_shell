@@ -49,3 +49,32 @@ _strcpy    | copies the string pointed to variable
 _strcpy    | copies the string pointed to variable
 _strdup    | Duplicate a string
 
+## Usage 
+
+>./hsh
+
+>$
+>$ env  
+>USER=mahalaksmy
+>SHLVL=1
+>HOME=/home/mahalaksmy
+>OLDPWD=/mnt/c/Users/Maha Laksmy Amariles/Documents/Holberton/simple_shell
+>WSL_DISTRO_NAME=Ubuntu-20.04
+>LOGNAME=mahalaksmy
+>NAME=LAPTOP-JQ7KVVKJ
+
+>$ls 
+>2_utility.c   AUTHORS   create_error.c   hsh         linked_list.c   man_1_simple_shell   set_commands.c  'Untitled Diagram.drawio'
+
+>$pwd
+>/mnt/c/Users/Maha Laksmy Amariles/Documents/Holberton/simple_shell
+
+>$exit
+>➜  simple_shell git:(main) ✗ 
+
+## AUTHORS
+
+Laura Sofia Caicedo <3383@holbertonschool.com>
+Andres Zapata <3340@holbertonschool.com>
+Maha Laksmy Garcia <3354@holbertonschool.com>
+
