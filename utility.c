@@ -56,7 +56,7 @@ int _strncmp(const char *str1, const char *str2, size_t bytes)
  */
 char *_strdup(char *str)
 {
-	size_t size;
+	size_t size = 0;
 	char *dup;
 
 	if (!(str))

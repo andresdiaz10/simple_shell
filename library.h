@@ -30,7 +30,7 @@ typedef struct list_s
 int execute(char **av);
 void new_Prompt(int __attribute__((unused)) sign);
 int run(char **buffer, char ***commands, char *total_path, int *exit_status);
-
+void free_path(list_t *head);
 
 /* ENVIRON */
 char *_getenv(const char *name);

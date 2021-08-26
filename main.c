@@ -19,13 +19,13 @@ int execute(char **av)
 	int history = 1;
 
 	path = init_path(&cp_path);
-	if (!(isatty(STDIN_FILENO)))
+	if (isatty(STDIN_FILENO) == 0)
 		flag = 0;
 	while (1)
 	{
 		exit_status = 0;
-		if (flag)
-			write(STDOUT_FILENO, prompt, 5);
+		if (flag == 1)
+			write(STDOUT_FILENO, prompt, 4);
 		fflush(stdout);
 		bytes_c = get_commands(&buffer, &commands);
 		if (bytes_c == -1)
@@ -36,9 +36,28 @@ int execute(char **av)
 		run(&buffer, &commands, total_path, &exit_status);
 		history++;
 	}
+	free_path(path);
 	free(buffer);
 	free(cp_path);
 	return (exit_status);
+}
+/**
+ * free_path - free the all member in the linked list
+ * @path: a first element of the data structure
+ *
+ * Return: none
+ */
+void free_path(list_t *path)
+{
+	list_t *aux;
+
+	while (path)
+	{
+		aux = path;
+		path = path->next;
+		free(aux);
+	}
+	free(path);
 }
 /**
  * run - run the command

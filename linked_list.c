@@ -68,33 +68,33 @@ char *create_path(char ***commands, list_t *path)
 {
 	char *aux_commands;
 	char *cp_path = NULL;
-	list_t *direct;
-	size_t size_commands;
-	size_t size_path;
+	list_t *aux_dir;
+	int size_commands;
+	int size_path;
 	struct stat aux;
 
-	direct = path;
-	if (!(commands))
+	if (!(*commands))
 		return (NULL);
-	if (!(direct))
+	aux_dir = path;
+	if (!(aux_dir))
 		return (NULL);
 	aux_commands = *(commands)[0];
 	size_commands = _strlen(aux_commands);
-	while (direct)
+	while (aux_dir)
 	{
-		size_path = _strlen(direct->dir);
+		size_path = _strlen(aux_dir->dir);
 		cp_path = (char *) malloc(size_path + size_commands + 2);
 		if (!(cp_path))
 			return (NULL);
 		*cp_path = '\0';
-		_strcat(cp_path, direct->dir);
+		_strcat(cp_path, aux_dir->dir);
 		_strcat(cp_path, "/");
 		_strcat(cp_path, aux_commands);
-		if (stat(cp_path, &aux) == 0) /*INVALID PATH OR FILENAME */
+		if (stat(cp_path, &aux) == 0)/*INVALID PATH OR FILENAME*/
 			break;
 		free(cp_path);
-		cp_path = NULL; /* NO DANGLING POINTER :D */
-		direct = direct->next;
+		cp_path = NULL;/* NO DANGLING POINTER :D*/
+		aux_dir = aux_dir->next;
 	}
 	return (cp_path);
 }
@@ -116,27 +116,23 @@ void check_path(char ***commands, char **total_path,
 	char *aux_commands = NULL;
 	char *buffer;
 	char *buffer1;
-	int acc;
-	int acc1;
 
 	if ((*total_path) || !(*commands))
 		return;
 	aux_commands = *(commands)[0];
-	acc = access(aux_commands, F_OK | X_OK); /*F_OK - file exist,X_OK permission*/
-	if (acc == 0)
+	/*F_OK - file exist,X_OK permission*/
+	if (access(aux_commands, F_OK | X_OK) == 0)
 		*total_path = _strdup(aux_commands);
 	else
 	{
-		acc = access(aux_commands, X_OK);
-		acc1 = access(aux_commands, F_OK);
-		if (acc != 0)
+		if (access(aux_commands, X_OK) != 0)
 		{
 			error_msg = "Permission denied\n";
 			*exit_status = 126;
 			buffer = _itoa(*history);
 			create_error(av[0], aux_commands, error_msg, buffer);
 		}
-		else if (acc1 != 0)
+		else if (access(aux_commands, F_OK) != 0)
 		{
 			error_msg = "path not found\n";
 			*exit_status = 127;
@@ -161,28 +157,29 @@ void check_path(char ***commands, char **total_path,
 void check_directories(char ***commands, char **total_path,
 		char **av, int *history, int *exit_status)
 {
-	char *error_msg = NULL;
 	char *aux_commands = NULL;
 	char *buffer;
-	int c;
+	char *error_msg = NULL;
 	struct stat aux;
 
-	if (!(commands))
+	if (*commands == NULL)
 		return;
+
 	aux_commands = *(commands)[0];
-	c = stat(aux_commands, &aux); /*point to the pathname */
-	if (c == 0)
+
+	if (stat(aux_commands, &aux) == 0)
 	{
 		if ((aux.st_mode & S_IFMT) == S_IFDIR)
 		{
-			*exit_status = 126;
 			buffer = _itoa(*history);
+			*exit_status = 126;
 			error_msg = "Permission denied\n";
 			create_error(av[0], aux_commands, error_msg, buffer);
-			if (*total_path)
+
+			if (*total_path != NULL)
 			{
 				free(*total_path);
-				*total_path = NULL; /*NO DANGLING POINTER*/
+				*total_path = NULL;
 			}
 		}
 	}
