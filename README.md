@@ -64,12 +64,15 @@ _strdup    | Duplicate a string
 >NAME=LAPTOP-JQ7KVVKJ
 
 >$ls 
+
 >2_utility.c   AUTHORS   create_error.c   hsh         linked_list.c   man_1_simple_shell   set_commands.c  'Untitled Diagram.drawio'
 
 >$pwd
+
 >/mnt/c/Users/Maha Laksmy Amariles/Documents/Holberton/simple_shell
 
 >$exit
+
 >➜  simple_shell git:(main) ✗ 
 
 ## AUTHORS
