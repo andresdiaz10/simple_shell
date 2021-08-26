@@ -8,7 +8,7 @@
 int execute(char **av)
 {
 	list_t *path = NULL;
-	char *prompt = "(:) ";
+	char *prompt = "$ ";
 	char **commands = NULL;
 	char *buffer = NULL;
 	char *cp_path = NULL;
@@ -25,7 +25,7 @@ int execute(char **av)
 	{
 		exit_status = 0;
 		if (flag == 1)
-			write(STDOUT_FILENO, prompt, 4);
+			write(STDOUT_FILENO, prompt, 3);
 		fflush(stdout);
 		bytes_c = get_commands(&buffer, &commands);
 		if (bytes_c == -1)
@@ -66,7 +66,7 @@ void free_path(list_t *path)
  * @total_path: path
  * @exit_status: status terminated program
  *
- * Return: EXE
+ * Return: return a number to termiante the program -7 fail, 1 exit
  */
 int run(char **buffer, char ***commands, char *total_path, int *exit_status)
 {
@@ -108,7 +108,7 @@ int run(char **buffer, char ***commands, char *total_path, int *exit_status)
 void new_Prompt(int  sign)
 {
 	(void)sign;
-	write(STDOUT_FILENO, "\n(:) ", 5);
+	write(STDOUT_FILENO, "\n$ ", 4);
 }
 /**
  * main - run a simple shell interpreter
